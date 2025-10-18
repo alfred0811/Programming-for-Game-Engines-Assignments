@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpawnerController : MonoBehaviour
 {
@@ -7,7 +7,8 @@ public class SpawnerController : MonoBehaviour
 
     // Range the spawner is allowed to move
     [SerializeField] private float horizontalRange = 3f;
-    [SerializeField] private float verticalRange = 1.5f;
+
+    [SerializeField] private float fixedY = 4.0f;
 
     private Vector3 startPosition;
 
@@ -29,28 +30,25 @@ public class SpawnerController : MonoBehaviour
         {
             position.x += moveSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            position.y += moveSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            position.y -= moveSpeed * Time.deltaTime;
-        }
 
         // Clamp position within a movement range based on initial position
         float xOffset = Mathf.Clamp(position.x - startPosition.x, -horizontalRange, horizontalRange);
-        float yOffset = Mathf.Clamp(position.y - startPosition.y, -verticalRange, verticalRange);
 
-        position = new Vector3(startPosition.x + xOffset, startPosition.y + yOffset, position.z);
-
-        transform.position = position;
+        // Apply position
+        transform.position = new Vector3(startPosition.x + xOffset, fixedY, 0f);
 
         // Spawn ball on spacebar
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Quaternion.identity means no rotation
-            Instantiate(ballPrefab, transform.position, Quaternion.identity);
+            if (ballPrefab != null)
+            {
+                // Quaternion.identity means no rotation
+                Instantiate(ballPrefab, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogWarning("⚠️ Ball Prefab not assigned in inspector.");
+            }
         }
     }
 }

@@ -476,6 +476,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
       objectReference: {fileID: 0}
+    - target: {fileID: 8230568471781628796, guid: 052c912357ef23d4695f5e2ff0cc1584, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230568471781628796, guid: 052c912357ef23d4695f5e2ff0cc1584, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230568471781628796, guid: 052c912357ef23d4695f5e2ff0cc1584, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -514,7 +526,7 @@ MonoBehaviour:
   ballPrefab: {fileID: 139663520370524087, guid: f62fb0a6df505a440a6ba7ddc40f7d45, type: 3}
   moveSpeed: 5
   horizontalRange: 3
-  verticalRange: 1.5
+  fixedY: 4
 --- !u!61 &2938776045714216766 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 463802938749086698, guid: 052c912357ef23d4695f5e2ff0cc1584, type: 3}
