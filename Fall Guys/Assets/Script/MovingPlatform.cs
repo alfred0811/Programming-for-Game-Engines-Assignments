@@ -20,6 +20,12 @@ public class MovingPlatform : MonoBehaviour
         // goes from 0 to 1 and back to 0
         float ping = Mathf.PingPong(time, 1.0f);
 
-        float lerpValue = inverted ? 1f - ping : ping;
+        float lerpValue = ping;
+        if (inverted)
+        {
+            lerpValue = 1f - lerpValue;
+        }
+
+        transform.position = Vector3.Lerp(bottomPoint.position, topPoint.position, lerpValue);
     }
 }
